@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 
 from .forms import RegistrationForm
-from .models import Buyer, Game
+from .models import Buyer, Game, News
 
 
 def platform(request):
@@ -26,6 +27,15 @@ def cart(request):
             }
     return render(request, 'cart.html', context)
 
+def news(request):
+    paginator = Paginator(News.objects.all(), 3)
+    page_number = request.GET.get('page', 1)
+    news = paginator.get_page(page_number)
+    context = {
+            'pagename': 'Новости',
+            'news': news,
+            }
+    return render(request, 'news.html', context)
 
 def sign_up_by_html(request):
     info = {}

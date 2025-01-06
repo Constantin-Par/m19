@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Buyer, Game
+from .models import Buyer, Game, News
 
 
 # Register your models here.
@@ -20,3 +20,10 @@ class BuyerAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_per_page = 30
     readonly_fields = ('balance',)
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'content', 'date',)
+    list_filter = ('title', )
+    search_fields = ('title', 'content', 'date',)
+    list_per_page = 10

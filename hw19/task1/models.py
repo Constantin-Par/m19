@@ -23,6 +23,14 @@ class Game(models.Model):
     def __str__(self):
         return self.title
 
+class News(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    date = models.DateField()
+
+    def __str__(self):
+        return self.title
+
 
 '''
 Список QuerySet запросов в порядке вызовов, которые использовались для внесения изменений в БД
